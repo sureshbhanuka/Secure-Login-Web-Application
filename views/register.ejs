@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <form method="POST" action="/register">
+    <h2>Register</h2>
+
+    <% if (errors.length > 0) { %>
+      <ul style="color: red;">
+        <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <input type="email" name="email" placeholder="Email" required value="<%= oldInput.email %>">
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+
+    <button type="submit">Register</button>
+
+    <p>Already have an account? <a href="/login">Login here</a></p>
+  </form>
+</body>
+</html>
